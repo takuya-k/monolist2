@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   has_many :want_items, through: :wants, source: :item
   
   #haveしているアイテムの一覧
-  has_many :haves, class_name: "Have", forighn_key: "user_id", dependent: :destroy
+  has_many :haves, class_name: "Have", foreign_key: "user_id", dependent: :destroy
   has_many :have_items, through: :haves, source: :item
 
 
@@ -39,11 +39,11 @@ class User < ActiveRecord::Base
 
   ## TODO 実装
   def have(item)
-    haves.create(item_id: item.item_id)
+    haves.create(item_id: item.id)
   end
 
   def unhave(item)
-    haves.find_by(item_id: item.item_id).destroy
+    haves.find_by(item_id: item.id).destroy
   end
 
   def have?(item)
@@ -51,11 +51,11 @@ class User < ActiveRecord::Base
   end
 
   def want(item)
-    wants.create(item_id: item.item_id)
+    wants.create(item_id: item.id)
   end
 
   def unwant(item)
-    wants.find_by(item_id: item.item_id).destroy
+    wants.find_by(item_id: item.id).destroy
   end
 
   def want?(item)
