@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
  
   def new
     if params[:q]
+      #response = RakutenWebService::Books::DVD.search(title: params[:q] , booksGenreId: "003201")
       response = RakutenWebService::Ichiba::Item.search(
         keyword: params[:q],
         imageFlag: 1,
